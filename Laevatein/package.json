@@ -1,0 +1,10 @@
+{
+  "name": "laevatein-fuga-de-marte",
+  "private": true,
+  "scripts": {
+    "build": "esbuild js/main.js --bundle --format=iife --target=es2020 --outfile=js/game.bundle.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

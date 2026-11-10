@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Lævatein — Fuga de Marte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="telaIntro" aria-hidden="true"></canvas>
+
+    <div id="menuProj" class="menuProjeto">
+        <div class="alinhamentoProjeto">
+            <h1 id="textProjeto" class="textoProjeto">LÆVATEIN</h1>
+            <p id="subtitleProjeto" class="subtituloProjeto">FUGA DE MARTE</p>
+            <button id="buttonProjeto" class="botaoProjeto" type="button" disabled>CARREGANDO...</button>
+        </div>
+    </div>
+
+    <div id="menuGame" class="divGame oculto">
+        <h1 class="textoGame">Lævatein</h1>
+        <p class="subtituloGame">Fuga de Marte</p>
+        <button id="buttonGame" class="botaoGame" type="button">Jogar</button>
+        <div class="ajudaGame">
+            <p><span>← →</span> mover</p>
+            <p><span>↑</span> pular &nbsp; segure no ar: <span>JATO</span></p>
+            <p>Colete <span>3 CHAVES</span> por fase</p>
+            <p><span>ESPAÇO</span> atirar</p>
+            <p><span>P</span> pausar &nbsp; <span>M</span> som</p>
+        </div>
+        <p id="recordeMenu" class="recordeMenu"></p>
+    </div>
+
+    <div id="containerGame" class="oculto">
+        <canvas id="telaGame" aria-label="Jogo Lævatein"></canvas>
+        <div id="painel" class="painel oculto" role="dialog" aria-live="polite"></div>
+        <div id="toque">
+            <button class="e" data-k="ArrowLeft" aria-label="Esquerda">◀</button>
+            <button class="d" data-k="ArrowRight" aria-label="Direita">▶</button>
+            <button class="t" data-k="Space" aria-label="Atirar">●</button>
+            <button class="p" data-k="ArrowUp" aria-label="Pular">▲</button>
+            <button class="z" data-a="p" aria-label="Pausar">❚❚</button>
+            <button class="m" data-a="m" aria-label="Som">♪</button>
+        </div>
+        <div id="girar">GIRE O CELULAR<br>PARA O MODO PAISAGEM ↻</div>
+    </div>
+
+    <div id="cortina"></div>
+
+    <script src="js/game.bundle.js"></script>
+</body>
+</html>

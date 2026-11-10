@@ -1,0 +1,306 @@
+:root {
+    --fonte: "Press Start 2P", "Courier New", monospace;
+    --crimson: #e0284d;
+    --coral: #ff8d8d;
+    --cinza: #b9c2cc;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: var(--fonte);
+    color: #fff;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oculto { display: none !important; }
+
+#telaIntro {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ---------- Tela 1: Projeto Frontend ---------- */
+.menuProjeto {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    text-align: center;
+    pointer-events: none;
+}
+
+.alinhamentoProjeto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.textoProjeto {
+    color: #e8edf3;
+    font-size: clamp(20px, 4vw, 44px);
+    margin: 0 0 34px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px rgba(255, 140, 80, 0.55), 4px 4px 0 rgba(0, 0, 0, 0.6);
+    transition: transform 2.6s ease-in-out, opacity 2.6s ease;
+}
+
+.subtituloProjeto {
+    margin: -18px 0 32px;
+    color: #ffc29b;
+    font-size: clamp(8px, 1.15vw, 13px);
+    letter-spacing: 2px;
+    line-height: 1.8;
+    text-shadow: 0 2px 8px #000;
+    transition: transform 2.6s ease-in-out, opacity 2.6s ease;
+}
+
+.botaoProjeto {
+    pointer-events: auto;
+    touch-action: manipulation;
+    font-family: var(--fonte);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 16px 30px;
+    font-size: clamp(14px, 2vw, 22px);
+    border: 3px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.25), 5px 5px 0 rgba(0, 0, 0, 0.55);
+    transition: background-color 0.25s ease, transform 2.6s ease-in-out, opacity 2.6s ease;
+}
+
+.botaoProjeto:disabled { opacity: 0.55; cursor: wait; }
+.botaoProjeto:not(:disabled):hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+.botaoProjeto.preparando:disabled { cursor: default; pointer-events: none; }
+
+.textoProjeto.introSaindo,
+.subtituloProjeto.introSaindo,
+.botaoProjeto.introSaindo {
+    transform: translateY(-300px);
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .textoProjeto,
+    .subtituloProjeto,
+    .botaoProjeto { transition-duration: 0.01ms; }
+}
+
+/* ---------- Tela 2: menu do jogo ---------- */
+.divGame {
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.textoGame {
+    color: var(--crimson);
+    font-size: clamp(34px, 6.5vw, 84px);
+    margin: 0 0 10px 0;
+    text-align: center;
+    text-shadow: 0 0 26px rgba(224, 40, 77, 0.65), 5px 5px 0 rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translateY(-70px);
+    transition: transform 1.6s ease, opacity 1.5s ease;
+}
+
+.subtituloGame {
+    margin: 0 0 30px 0;
+    font-size: clamp(10px, 1.4vw, 16px);
+    letter-spacing: 4px;
+    color: var(--coral);
+    opacity: 0;
+    transform: translateY(-70px);
+    transition: transform 1.6s ease 0.3s, opacity 1.5s ease 0.3s;
+}
+
+.botaoGame {
+    touch-action: manipulation;
+    font-family: var(--fonte);
+    margin: 0;
+    background: var(--coral);
+    color: #7d0f2a;
+    padding: 14px 34px;
+    font-size: clamp(16px, 2.2vw, 28px);
+    border: 4px solid #7d0f2a;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transform: translateY(-70px);
+    transition: background-color 0.3s ease, opacity 2.5s ease, transform 1.6s ease-in-out;
+    transition-delay: 0s, 1s, 1s;
+}
+
+.ajudaGame {
+    margin-top: 34px;
+    text-align: center;
+    font-size: clamp(8px, 1vw, 11px);
+    line-height: 2.1;
+    color: var(--cinza);
+    opacity: 0;
+    transition: opacity 2s ease 1.6s;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+.ajudaGame p { margin: 0; }
+.ajudaGame span { color: #fff; background: rgba(0, 0, 0, 0.45); padding: 3px 6px; border-radius: 4px; }
+
+.recordeMenu {
+    margin: 22px 0 0;
+    font-size: clamp(9px, 1.1vw, 12px);
+    color: #ffd166;
+    opacity: 0;
+    transition: opacity 2s ease 1.8s;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+.divGame.ativo { pointer-events: none; }
+.divGame.ativo .textoGame,
+.divGame.ativo .botaoGame,
+.divGame.ativo .subtituloGame {
+    opacity: 1;
+    transform: translateY(0);
+}
+.divGame.ativo .ajudaGame,
+.divGame.ativo .recordeMenu { opacity: 1; }
+.divGame.ativo .botaoGame { pointer-events: auto; }
+
+.botaoGame:hover { background-color: #ffb3b3; }
+
+.divGame.saindo .textoGame,
+.divGame.saindo .botaoGame,
+.divGame.saindo .subtituloGame,
+.divGame.saindo .ajudaGame,
+.divGame.saindo .recordeMenu {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+    transition-delay: 0s;
+}
+
+/* ---------- Jogo ---------- */
+#containerGame {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0b0f17;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+#containerGame.mostrarJogo { opacity: 1; }
+
+#telaGame {
+    display: block;
+    background: #1a0d0a;
+    image-rendering: pixelated;
+}
+
+/* ---------- Painéis (pausa, fim de jogo, vitória) ---------- */
+.painel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(4, 6, 12, 0.72);
+    backdrop-filter: blur(3px);
+    z-index: 20;
+    text-align: center;
+    animation: surgir 0.4s ease both;
+}
+
+.painel h2 {
+    margin: 0 0 26px;
+    font-size: clamp(24px, 4.4vw, 54px);
+    letter-spacing: 3px;
+    text-shadow: 0 0 22px currentColor, 4px 4px 0 rgba(0, 0, 0, 0.7);
+}
+.painel h2.derrota { color: var(--crimson); }
+.painel h2.vitoria { color: #5eead4; }
+.painel h2.pausa { color: #fff; }
+
+.painel .linhas {
+    min-width: min(560px, 88vw);
+    margin-bottom: 30px;
+    padding: 18px 26px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.35);
+    font-size: clamp(9px, 1.4vw, 14px);
+    line-height: 2.3;
+}
+.painel .linha { display: flex; justify-content: space-between; gap: 30px; }
+.painel .linha span:first-child { color: var(--cinza); }
+.painel .linha.total { margin-top: 8px; padding-top: 8px; border-top: 2px dashed rgba(255, 255, 255, 0.3); color: #ffd166; font-size: 1.2em; }
+.painel .linha.total span:first-child { color: #ffd166; }
+.painel .novo { color: #ffd166; margin-top: 8px; animation: piscar 0.8s steps(2) infinite; }
+
+.painel .botoes { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+.painel button {
+    font-family: var(--fonte);
+    font-size: clamp(10px, 1.5vw, 16px);
+    padding: 14px 24px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.55);
+    transition: transform 0.12s ease, background 0.2s ease;
+}
+.painel button:hover { background: rgba(255, 255, 255, 0.28); transform: translateY(-2px); }
+.painel button.primario { background: var(--crimson); border-color: #fff; }
+.painel button.primario:hover { background: #ff3d62; }
+.painel .dica { margin-top: 22px; font-size: 9px; color: #8793a0; }
+
+#cortina {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+#cortina.ativa { opacity: 1; pointer-events: auto; }
+
+@keyframes surgir { from { opacity: 0; } to { opacity: 1; } }
+@keyframes piscar { 50% { opacity: 0.2; } }
+
+#toque{position:absolute;inset:0;z-index:15;display:none;pointer-events:none;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.touch #toque{display:block}
+#toque button{position:absolute;pointer-events:auto;touch-action:none;width:clamp(56px,14vmin,92px);height:clamp(56px,14vmin,92px);border-radius:50%;border:3px solid #fff;background:rgba(255,255,255,.14);color:#fff;font:inherit;font-size:clamp(14px,4vmin,26px);padding:0;bottom:calc(4vmin + env(safe-area-inset-bottom))}
+#toque button.on{background:rgba(224,40,77,.65)}
+#toque .e{left:calc(3vmin + env(safe-area-inset-left))}#toque .d{left:calc(3vmin + clamp(70px,17vmin,110px) + env(safe-area-inset-left))}
+#toque .p{right:calc(3vmin + env(safe-area-inset-right))}#toque .t{right:calc(3vmin + clamp(70px,17vmin,110px) + env(safe-area-inset-right))}
+#toque .z,#toque .m{width:44px;height:44px;font-size:14px;bottom:2vmin;left:50%}#toque .z{margin-left:-50px}#toque .m{margin-left:6px}
+#girar{display:none}
+@media (pointer:coarse) and (orientation:portrait){#girar{display:flex;position:absolute;inset:0;z-index:30;background:#000;align-items:center;justify-content:center;text-align:center;padding:24px;line-height:2;font-size:12px}}

@@ -1,0 +1,72 @@
+LAEVATEIN - FUGA DE MARTE
+
+COMO ABRIR
+1. Extraia o ZIP por completo, mantendo a pasta assets junto do index.html.
+2. Abra index.html com duplo clique para jogar.
+3. Como alternativa, abra Iniciar-Jogo.bat para iniciar pelo servidor local.
+
+ESTRUTURA
+index.html             Estrutura das telas
+css/style.css          Estilos e animações
+js/main.js             Inicialização e conexão dos módulos
+js/game.bundle.js      Versão agrupada para abrir index.html diretamente
+js/local-server.js     Servidor local para abrir o jogo no Windows
+Iniciar-Jogo.bat       Inicializador do jogo e do servidor local
+package.json           Comando para regenerar o bundle após alterar módulos
+js/core/asset-loader.js Carregamento assíncrono de imagens e áudio
+js/core/assets.js      Manifesto de ativos e sistema de som
+js/core/input-handler.js Entrada de teclado
+js/core/state-machine.js Estados globais do jogo
+js/scenes/intro.js     Animação da abertura
+js/scenes/menu.js      Menus e transições
+js/scenes/level-manager.js Configuração das fases
+js/scenes/game.js      Física, colisões, inimigos e chefões
+js/utils/sprite-animator.js Recorte e desenho de quadros
+assets/audio/          Músicas e efeitos
+assets/images/player/  Sprites PNG do jogador
+assets/images/enemies/ Sprites PNG dos inimigos
+assets/images/boss/    Chefes e quadros de surgimento do Devorador de Plasma
+assets/images/backgrounds/ Cenários PNG por fase e referências convertidas
+assets/images/environment/ Elementos do cenário
+assets/reference/      Referências PNG, organizadas em originals/
+
+TELAS
+Toque ou clique em COMEÇAR para iniciar a abertura; o título, o subtítulo e o
+botão sobem e desaparecem juntos. O menu mostra os controles antes da partida.
+O HUD informa progresso, vida do chefe e combustível do jato em texto, sem
+barras gráficas.
+
+CENÁRIOS E SPRITES
+backgrounds/cenario-fase1.png          Marte, fase 1 e abertura
+backgrounds/cenario-fase2-saturno.png  Saturno, fase 2
+backgrounds/cenario-fase3-gelo.png     Planeta gelado e fase final
+boss/sentinela-base-chefe.png          Sentinela, chefe da fase 1 (ataque de espada)
+boss/bruxa-chefe.png                   Bruxa, chefe da fase 2 (ataques mágicos)
+boss/chefe.png, hidra.png, enemies/worm.png  Formas da Minhoca, chefe final da fase 3
+boss/devorador-emergence-*.png         Quadros de surgimento da Minhoca
+enemies/guardian-run-sheet.png         Oito quadros de corrida do guardião
+environment/boss-emergence-ground.png  Efeito de rachadura no chão
+
+Todos os arquivos JPEG foram convertidos para PNG e removidos. Sprites prontos
+para uso ficam em assets/images; imagens de referência e folhas de sprites
+originais ficam em assets/reference/originals.
+
+CONTROLES
+Setas esquerda/direita ou A/D: correr
+Seta para cima ou W: pular e usar o jato
+Shift: acelerar e usar o jato no ar
+Espaço: atirar
+P: pausar
+M: ligar/desligar som
+No fim da terceira fase, caminhe até o vão da porta da nave para embarcar.
+A nave aguarda pousada e só decola depois que o astronauta entra.
+Em celulares, use os botões na tela para mover, pular e atirar.
+
+Após alterar arquivos JavaScript em js/, atualize js/game.bundle.js com
+"npm install" e "npm run build". Isso só é necessário para desenvolvimento;
+para jogar, basta abrir index.html.
+
+Pise nos inimigos para derrotá-los. Colete chaves e corações.
+Cada fase tem cenário e inimigos próprios. A progressão dos chefes é Sentinela,
+Bruxa do Núcleo e, por fim, a Minhoca do Núcleo. Ela emerge uma vez e cresce
+em duas mudanças de forma durante o confronto. A dificuldade aumenta a cada fase.
