@@ -1,89 +1,129 @@
-﻿# Laevatein - Fuga de Marte
+# Laevatein — Fuga de Marte
 
-Laevatein — Fuga de Marte
-Laevatein — Fuga de Marte é um jogo de ação e plataforma 2D em pixel art, executado diretamente no navegador. Ajude um astronauta a escapar de Marte: atravesse três fases, derrote inimigos e chefes, reúna as chaves permitidas e embarque na nave.
+**Laevatein — Fuga de Marte** é um jogo de ação e plataformas 2D em pixel art, executado no navegador. Ajude um astronauta a escapar: atravesse três fases, derrote inimigos e chefes, reúna as chaves necessárias e embarque na nave.
 
-Visão geral
-Três fases com cenários, inimigos e desafios próprios.
-Combate com tiros, saltos e jetpack.
-Chefes com padrões de ataque distintos e, sem confronto final, de múltiplas formas.
-Corações para recuperar vidas, pontuação, combos e gravar local.
-Controles por teclado, gamepad e botões na tela sensível ao toque.
-Resolução de jogo lógica de 1280 × 720, adaptada ao tamanho da janela.
-Órgãos transversais
-JavaScript (módulos ES) para lógica, cenas, físicas, colisões, entradas e áudio.
-HTML5 Canvas para renderizar o jogo e as animações.
-HTML5 e CSS para menus, HUD, painéis e interface responsiva.
-esbuild para gerar js/game.bundle.js, incluído no repositório para executar o jogo.
-Node.js (opcional para jogar; necessário para o servidor local incluído e para reconstruir o pacote). O projeto também pode ser útil com Python.
-Não há dependências npm durante a execução no navegador. esbuildé uma dependência de desenvolvimento. A fonte pixelada é fornecida pelo Google Fonts; sem conexão, o jogo usa fontes alternativas.
+[**Descarregar o jogo (ZIP)**](https://github.com/larissaRgj/laevatein/raw/refs/heads/main/LaevateinFinal.zip) · [Ver o código-fonte](https://github.com/larissaRgj/laevatein)
 
-Controles e jogabilidade
-Ação	teclado	Celular/tablet
-Motor	←/ →ou A/D	Botões ◀/▶
-Pular	↑ouW	†▲
-Usar o jetpack no ar	Manter ↑/ WouShift	Manter▲
-Acelerador	Shift	—
-Atirar	Espaço, Z, JouK	†●
-Pausar / continuar	PouEsc	Botão de pausa
-Ativar/desativar ou som	M	Botão de som
-Interagir com uma nave	E(ou caminhando até a porta)	Caminhar até a porta
-Objetivo: em cada fase, elimine a quantidade de inimigos indicados e colete 3 chaves para liberar o chefe. Pular sobre inimigos também pode derrotá-los. Colete corações para recuperar vidas; como vidas são limitadas. Depois de vencer o chefe final, caminhe até a porta da nave para embarcar e concluir a fuga.
+> O jogo está incluído no ZIP e pode ser executado localmente. Não é necessário instalar dependências npm para jogar. O repositório não configura atualmente uma página GitHub Pages; por isso, o link acima descarrega o jogo em vez de abrir uma versão alojada.
 
-Em dispositivos móveis, joguei na orientação paisagem . O registro e a preferência de alguns são salvos no armazenamento local do navegador.
+## Funcionalidades
 
-Requisitos
-Navegador moderno com suporte a Canvas, JavaScript ES2020 e áudio HTML5.
-Para usar o servidor incluído: Node.js 18 ou superior. Como alternativa, Python 3.
-npm e acesso ao registro do npm somente para instalar a ferramenta de build durante o desenvolvimento.
-Clonar e executar
-1. Clonar o
+- Três fases com cenários, inimigos e desafios distintos.
+- Combate com tiros, saltos e jetpack; também é possível derrotar inimigos saltando sobre eles.
+- Chefes com padrões de ataque próprios. O confronto final apresenta várias formas.
+- Chaves para desbloquear os chefes, corações para recuperar vidas, pontuação e combos.
+- Controlos por teclado, gamepad e botões tácteis.
+- Ecrã de jogo em Canvas com resolução lógica de 1280 × 720, adaptada à janela.
+- Recorde e preferência de som guardados localmente no navegador.
+
+## Tecnologias
+
+- **JavaScript ES2020**, em módulos ES, para a lógica, as cenas, a física, as colisões, os controlos e o áudio.
+- **HTML5 Canvas** para o jogo e as animações.
+- **HTML5 e CSS** para os menus, HUD, painéis e interface responsiva.
+- **esbuild** para agrupar os módulos em `js/game.bundle.js`.
+- **Node.js 18+** para o servidor local e para reconstruir o bundle; **Python 3** é uma alternativa para servir os ficheiros estáticos.
+
+Durante o jogo, não há dependências npm necessárias: o bundle já está incluído. A fonte Press Start 2P é carregada do Google Fonts; sem ligação à Internet, é usada uma fonte alternativa.
+
+## Requisitos
+
+- Navegador moderno com suporte para Canvas, JavaScript ES2020 e áudio HTML5.
+- Para o servidor incluído: Node.js 18 ou superior. Em alternativa, Python 3.
+- Para desenvolvimento/build: Node.js 18+, npm e acesso ao registo npm para instalar o esbuild.
+
+## Descarregar e executar
+
+### Opção A — descarregar o ZIP
+
+1. [Descarregue o jogo](https://github.com/larissaRgj/laevatein/raw/refs/heads/main/LaevateinFinal.zip) e extraia o arquivo por completo.
+2. Abra a pasta `Laevatein` extraída. Mantenha `assets/`, `css/`, `js/` e `index.html` juntos.
+3. Inicie um servidor local a partir dessa pasta, seguindo uma das opções abaixo. Recomenda-se HTTP em vez de abrir `index.html` diretamente.
+
+### Opção B — clonar o repositório
+
+```bash
 git clone https://github.com/larissaRgj/laevatein.git
 cd laevatein/Laevatein
-2. Iniciar o jogo
-O pacote elaborado já está incluído. Não é necessário instalar pacotes para jogar. Recomendamos servir a pasta por HTTP, em vez de abrir o HTML diretamente.
+```
 
-Com Node.js:
+### Iniciar o servidor local
 
+Com Node.js 18 ou superior:
+
+```bash
 node js/local-server.js
-O servidor informa o endereço local no terminal (normalmente http://127.0.0.1:8765/) e, no Windows, tenta abrir o navegador. Se a porta estiver ocupada, tente as próximas portas disponíveis. Mantenha o terminal aberto enquanto joga; encerre com Ctrl+C.
+```
 
-Alternativa com Python 3:
+Abra o endereço indicado no terminal (normalmente `http://127.0.0.1:8765/`). O servidor tenta usar portas seguintes se a 8765 estiver ocupada. No Windows, poderá abrir o navegador automaticamente. Mantenha o terminal aberto durante o jogo e pare o servidor com `Ctrl+C`.
 
+Em alternativa, com Python 3:
+
+```bash
 python -m http.server 8765 --bind 127.0.0.1
-No Windows, você também pode usar py -3 -m http.server 8765 --bind 127.0.0.1. Abra http://127.0.0.1:8765/no navegador e pare o servidor com Ctrl+C.
+```
 
-3. Reconstruir o pacote (opcional)
-Só é necessário alterar os módulos em js/. A partir da massa Laevatein/:
+Abra `http://127.0.0.1:8765/`. No Windows, também pode usar `py -3 -m http.server 8765 --bind 127.0.0.1`. Pare o servidor com `Ctrl+C`.
 
+No Windows, `Iniciar-Jogo.bat` inicia o servidor com Node.js ou, se não estiver disponível, tenta usar Python através do comando `py`.
+
+## Controlos e jogabilidade
+
+| Ação | Teclado | Ecrã táctil |
+| --- | --- | --- |
+| Mover | `←` / `→` ou `A` / `D` | Botões `◀` / `▶` |
+| Saltar | `↑` ou `W` | Botão `▲` |
+| Usar o jetpack no ar | Manter `↑` / `W` ou `Shift` | Manter `▲` |
+| Acelerar | `Shift` | — |
+| Disparar | `Espaço`, `Z`, `J` ou `K` | Botão `●` |
+| Pausar / continuar | `P` ou `Esc` | Botão de pausa |
+| Som ligado/desligado | `M` | Botão de som |
+| Interagir com a nave | `E` ou caminhar até à porta | Caminhar até à porta |
+
+Um gamepad compatível com a API Gamepad do navegador também é suportado. Em dispositivos móveis, jogue na orientação paisagem.
+
+### Objetivo
+
+Em cada fase, elimine o número de inimigos indicado e recolha três chaves para desbloquear o chefe. Salte sobre os inimigos ou use os disparos. Recolha corações para recuperar vidas. Depois de derrotar o chefe final, caminhe até à porta da nave para concluir a fuga.
+
+## Reconstruir o bundle (opcional)
+
+Só precisa de reconstruir o bundle se alterar os módulos-fonte em `js/`:
+
+```bash
 npm ci
 npm run build
-O comando atualiza js/game.bundle.js. O Node.js 18 ou superior e o npm são necessários para esta etapa.
+```
 
-Estrutura do projeto
+O comando actualiza `js/game.bundle.js`. O Node.js 18+ e o npm são necessários. Inclua o bundle actualizado no commit para que o jogo continue pronto a executar no navegador.
+
+## Estrutura do projecto
+
+```text
 Laevatein/
 ├── assets/
-│   ├── audio/          Músicas e efeitos
+│   ├── audio/          Músicas e efeitos sonoros
 │   ├── images/         Sprites, fundos, chefes e elementos do cenário
 │   └── reference/      Referências e artes originais
 ├── css/style.css       Estilos, menus e interface responsiva
 ├── js/
-│   ├── core/           Carregamento de recursos, áudio, entrada e estados
+│   ├── core/           Recursos, áudio, entrada e estados
 │   ├── entities/       Nave e movimento dos inimigos
-│   ├── scenes/         Abertura, menu, fases e lógica principal do jogo
+│   ├── scenes/         Abertura, menu, fases e lógica do jogo
 │   ├── utils/          Animação de sprites
 │   ├── main.js         Entrada dos módulos-fonte
 │   ├── game.bundle.js  Bundle pronto para o navegador
-│   └── local-server.js Servidor HTTP local para desenvolvimento
+│   └── local-server.js Servidor HTTP local
 ├── index.html          Página e elementos da interface
 ├── Iniciar-Jogo.bat    Atalho de inicialização para Windows
 ├── package.json        Script de build e dependência de desenvolvimento
-└── LEIA-ME.txt         Instruções resumidas em português brasileiro
-Desenvolvimento e limitações específicas
-O jogo não tem uma suíte de testes automatizados nem comandos de lint configurados no momento.
-js/game.bundle.jsé um artista gerado: depois de editar os módulos-fonte, execute npm run builde inclua o pacote atualizado no commit.
-A pasta node_modulesestá presente no histórico do repositório. Ela não deve ser versionada; o .gitignoreevita novas inclusões, mas é preciso remover o índice do Git para deixá-lo rastreá-lo.
-A abertura carrega a fonte Press Start 2P de um serviço externo. A indisponibilidade desse serviço não impede a execução, mas muda a tipografia.
+├── package-lock.json   Versões bloqueadas para instalação reproduzível
+└── LEIA-ME.txt         Instruções em português
+```
 
-## 🎮 Acesso ao Jogo
-[Clique aqui para jogar online](SEU_LINK_PAGES_AQUI)
+## Desenvolvimento e limitações conhecidas
+
+- Não há actualmente testes automatizados nem comandos de lint configurados.
+- `js/game.bundle.js` é gerado a partir dos módulos em `js/` com esbuild.
+- `node_modules/` está presente no histórico do repositório. O `.gitignore` impede novas inclusões, mas os ficheiros já rastreados pelo Git precisam de ser removidos do índice para deixarem de ser versionados.
+- A tipografia Press Start 2P depende do Google Fonts; a indisponibilidade do serviço não impede o jogo.

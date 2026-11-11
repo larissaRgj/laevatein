@@ -1,72 +1,130 @@
-LAEVATEIN - FUGA DE MARTE
+LAEVATEIN — FUGA DE MARTE
+=========================
 
-COMO ABRIR
-1. Extraia o ZIP por completo, mantendo a pasta assets junto do index.html.
-2. Abra index.html com duplo clique para jogar.
-3. Como alternativa, abra Iniciar-Jogo.bat para iniciar pelo servidor local.
+Laevatein — Fuga de Marte é um jogo de ação e plataformas 2D em pixel art,
+executado no navegador. Ajude um astronauta a escapar: atravesse três fases,
+derrote inimigos e chefes, recolha as chaves necessárias e embarque na nave.
+
+DESCARREGAR
+-----------
+Descarregue o jogo em formato ZIP:
+https://github.com/larissaRgj/laevatein/raw/refs/heads/main/LaevateinFinal.zip
+
+Extraia o arquivo por completo e mantenha assets/, css/, js/ e index.html na
+mesma pasta. Não é necessário instalar pacotes npm para jogar: o bundle do
+jogo já está incluído. Recomenda-se iniciar um servidor HTTP local, em vez de
+abrir index.html directamente.
+
+FUNCIONALIDADES
+---------------
+- Três fases com cenários, inimigos e desafios próprios.
+- Combate com disparos, saltos e jetpack; também pode derrotar inimigos saltando
+  sobre eles.
+- Chefes com padrões de ataque distintos e várias formas no confronto final.
+- Chaves para desbloquear os chefes, corações para recuperar vidas, pontuação
+  e combos.
+- Controlos por teclado, gamepad e botões no ecrã táctil.
+- Canvas com resolução lógica de 1280 × 720, adaptada ao tamanho da janela.
+- Recorde e preferência de som guardados no armazenamento local do navegador.
+
+REQUISITOS
+----------
+- Navegador moderno com suporte para Canvas, JavaScript ES2020 e áudio HTML5.
+- Node.js 18+ para o servidor local incluído; ou Python 3 como alternativa.
+- Node.js 18+ e npm para reconstruir o bundle (apenas desenvolvimento).
+
+EXECUTAR NO WINDOWS
+-------------------
+1. Extraia o ZIP.
+2. Abra a pasta Laevatein.
+3. Execute Iniciar-Jogo.bat.
+
+O atalho usa Node.js, se estiver instalado; caso contrário, tenta usar Python
+através do comando py. Mantenha a janela do servidor aberta enquanto joga.
+
+EXECUTAR COM NODE.JS
+--------------------
+Abra um terminal na pasta Laevatein e execute:
+
+    node js/local-server.js
+
+Abra o endereço indicado no terminal, normalmente:
+
+    http://127.0.0.1:8765/
+
+Se a porta estiver ocupada, o servidor tenta as portas seguintes. Pare-o com
+Ctrl+C.
+
+EXECUTAR COM PYTHON 3
+--------------------
+Na pasta Laevatein, execute:
+
+    python -m http.server 8765 --bind 127.0.0.1
+
+No Windows, também pode usar:
+
+    py -3 -m http.server 8765 --bind 127.0.0.1
+
+Depois, abra http://127.0.0.1:8765/ e pare o servidor com Ctrl+C.
+
+CLONAR O REPOSITÓRIO
+--------------------
+
+    git clone https://github.com/larissaRgj/laevatein.git
+    cd laevatein/Laevatein
+    node js/local-server.js
+
+Em seguida, abra o endereço indicado no terminal.
+
+CONTROLOS
+---------
+Mover:                 setas esquerda/direita ou A/D
+Saltar:                seta para cima ou W
+Jetpack no ar:         manter seta para cima/W ou Shift
+Acelerar:              Shift
+Disparar:              Espaço, Z, J ou K
+Pausar/continuar:      P ou Esc
+Som ligado/desligado:  M
+Interagir com a nave:  E ou caminhar até à porta
+
+Em dispositivos móveis, use os botões no ecrã e jogue na orientação paisagem.
+Também há suporte para gamepads compatíveis com o navegador.
+
+OBJECTIVO
+---------
+Em cada fase, elimine o número de inimigos indicado e recolha três chaves para
+libertar o chefe. Recolha corações para recuperar vidas. Após derrotar o chefe
+final, caminhe até à porta da nave para concluir a fuga.
+
+RECONSTRUIR O BUNDLE (OPCIONAL)
+-------------------------------
+Só é necessário depois de alterar módulos JavaScript dentro de js/:
+
+    npm ci
+    npm run build
+
+O comando actualiza js/game.bundle.js. É necessário Node.js 18+ e npm. Inclua
+o bundle actualizado no commit.
 
 ESTRUTURA
-index.html             Estrutura das telas
-css/style.css          Estilos e animações
-js/main.js             Inicialização e conexão dos módulos
-js/game.bundle.js      Versão agrupada para abrir index.html diretamente
-js/local-server.js     Servidor local para abrir o jogo no Windows
-Iniciar-Jogo.bat       Inicializador do jogo e do servidor local
-package.json           Comando para regenerar o bundle após alterar módulos
-js/core/asset-loader.js Carregamento assíncrono de imagens e áudio
-js/core/assets.js      Manifesto de ativos e sistema de som
-js/core/input-handler.js Entrada de teclado
-js/core/state-machine.js Estados globais do jogo
-js/scenes/intro.js     Animação da abertura
-js/scenes/menu.js      Menus e transições
-js/scenes/level-manager.js Configuração das fases
-js/scenes/game.js      Física, colisões, inimigos e chefões
-js/utils/sprite-animator.js Recorte e desenho de quadros
-assets/audio/          Músicas e efeitos
-assets/images/player/  Sprites PNG do jogador
-assets/images/enemies/ Sprites PNG dos inimigos
-assets/images/boss/    Chefes e quadros de surgimento do Devorador de Plasma
-assets/images/backgrounds/ Cenários PNG por fase e referências convertidas
-assets/images/environment/ Elementos do cenário
-assets/reference/      Referências PNG, organizadas em originals/
+---------
+assets/                 Músicas, sprites, cenários e referências
+css/style.css           Estilos, menus e interface responsiva
+js/core/                Carregamento de recursos, áudio, entrada e estados
+js/entities/             Nave e movimento dos inimigos
+js/scenes/               Abertura, menus, fases e lógica do jogo
+js/utils/                Animação de sprites
+js/main.js               Entrada dos módulos-fonte
+js/game.bundle.js        Bundle pronto para o navegador
+js/local-server.js       Servidor HTTP local
+index.html               Página do jogo
+Iniciar-Jogo.bat         Atalho de inicialização para Windows
+package.json             Script de build e esbuild
+package-lock.json        Dependências bloqueadas
 
-TELAS
-Toque ou clique em COMEÇAR para iniciar a abertura; o título, o subtítulo e o
-botão sobem e desaparecem juntos. O menu mostra os controles antes da partida.
-O HUD informa progresso, vida do chefe e combustível do jato em texto, sem
-barras gráficas.
-
-CENÁRIOS E SPRITES
-backgrounds/cenario-fase1.png          Marte, fase 1 e abertura
-backgrounds/cenario-fase2-saturno.png  Saturno, fase 2
-backgrounds/cenario-fase3-gelo.png     Planeta gelado e fase final
-boss/sentinela-base-chefe.png          Sentinela, chefe da fase 1 (ataque de espada)
-boss/bruxa-chefe.png                   Bruxa, chefe da fase 2 (ataques mágicos)
-boss/chefe.png, hidra.png, enemies/worm.png  Formas da Minhoca, chefe final da fase 3
-boss/devorador-emergence-*.png         Quadros de surgimento da Minhoca
-enemies/guardian-run-sheet.png         Oito quadros de corrida do guardião
-environment/boss-emergence-ground.png  Efeito de rachadura no chão
-
-Todos os arquivos JPEG foram convertidos para PNG e removidos. Sprites prontos
-para uso ficam em assets/images; imagens de referência e folhas de sprites
-originais ficam em assets/reference/originals.
-
-CONTROLES
-Setas esquerda/direita ou A/D: correr
-Seta para cima ou W: pular e usar o jato
-Shift: acelerar e usar o jato no ar
-Espaço: atirar
-P: pausar
-M: ligar/desligar som
-No fim da terceira fase, caminhe até o vão da porta da nave para embarcar.
-A nave aguarda pousada e só decola depois que o astronauta entra.
-Em celulares, use os botões na tela para mover, pular e atirar.
-
-Após alterar arquivos JavaScript em js/, atualize js/game.bundle.js com
-"npm install" e "npm run build". Isso só é necessário para desenvolvimento;
-para jogar, basta abrir index.html.
-
-Pise nos inimigos para derrotá-los. Colete chaves e corações.
-Cada fase tem cenário e inimigos próprios. A progressão dos chefes é Sentinela,
-Bruxa do Núcleo e, por fim, a Minhoca do Núcleo. Ela emerge uma vez e cresce
-em duas mudanças de forma durante o confronto. A dificuldade aumenta a cada fase.
+NOTAS DE DESENVOLVIMENTO
+------------------------
+O projecto não tem actualmente testes automatizados nem comandos de lint.
+node_modules/ está presente no histórico do Git; ignorá-lo não remove os
+ficheiros já rastreados. A fonte Press Start 2P é carregada do Google Fonts;
+sem ligação, o navegador usa uma fonte alternativa.
